@@ -1,11 +1,11 @@
-- name: Reading unseal key contents
+- name: Reading seal key contents
   command: cat {{item}}
   register: seal_keys
   with_fileglob: "{{ seal_keys_dir_output }}/*"
   delegate_to: localhost
   become: no
 
-- name: Unseal vault with unseal keys
+- name: seal vault with seal keys
   shell: |
     vault operator seal {{ item.stdout }}
   environment:
